@@ -36,7 +36,10 @@ class _MovieListState extends State<MovieList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Popular Movies\nAmiruddin Fikri Nur (2031710163)"),
+        backgroundColor: Color(0xFFE3A815),
+        title: const Text(
+            "Popular Movies XXI\nAmiruddin Fikri Nur (2031710163)",
+            style: TextStyle(fontFamily: 'Goudy')),
       ),
       body: _isLoading
           ? const Center(
@@ -49,12 +52,18 @@ class _MovieListState extends State<MovieList> {
                   color: Colors.white,
                   elevation: 2.0,
                   child: ListTile(
-                    title: Text(movies[pos].title),
+                    leading:  CircleAvatar(
+                      backgroundColor: Colors.white,
+                      child: Image.network('https://image.tmdb.org/t/p/w300' + movies[pos].posterPath),
+                    ),
+                    title: Text(movies[pos].title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold )),
                     subtitle:
-                        Text('Rating = ' + movies[pos].voteAverage.toString()),
+                        Text('Release Date = ' + movies[pos].releaseDate, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold )),
                     onTap: () {
                       MaterialPageRoute route = MaterialPageRoute(
-                          builder: (_) => MovieDetail(movie: movies[pos],));
+                          builder: (_) => MovieDetail(
+                                movie: movies[pos],
+                              ));
                       Navigator.push(context, route);
                     },
                   ),

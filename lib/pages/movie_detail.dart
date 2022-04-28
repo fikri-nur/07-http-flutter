@@ -19,23 +19,66 @@ class MovieDetail extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        title: Text(movie.title),
+        backgroundColor: Color(0xFFE3A815),
+        title: Text(movie.title, style: TextStyle(fontFamily: 'Optima')),
       ),
       body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            children: [
-              Container(
-                padding: EdgeInsets.all(16),
-                height: height / 1.5,
-                child: Image.network(path),
-              ),
-              Container(
-                child: Text(movie.overview),
-                padding: EdgeInsets.only(left: 16, right: 16),
-              )
-            ],
-          ),
+        child: Column(
+          children: [
+            Padding(padding: EdgeInsets.only(top: 20)),
+            Text(movie.title,
+                style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center),
+            Container(
+              height: height / 2,
+              child: Image.network(path),
+            ),
+            Container(
+                padding: EdgeInsets.only(left: 16, right: 16, top: 20),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          ' Ratings: ' + movie.voteAverage.toString(),
+                          textAlign: TextAlign.justify,
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        Icon(
+                          Icons.star,
+                          color: Color(0xFFE3A815),
+                          size: 25,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10,
+                      width: MediaQuery.of(context).size.width,
+                    ),
+                    Text(
+                      movie.overview,
+                      textAlign: TextAlign.justify,
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    SizedBox(
+                      height: 10,
+                      width: MediaQuery.of(context).size.width,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          'Release Date: ' + movie.releaseDate,
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.left,
+                        ),
+                      ],
+                    )
+                  ],
+                ))
+          ],
         ),
       ),
     );
